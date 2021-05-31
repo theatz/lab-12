@@ -158,6 +158,7 @@ class StatSender : public IObserver2 {
     for (const auto& item : items) {
       log_->WriteDebug("send: " + item.id);
       // ... some code
+
       fstr << item.id << item.name << item.score;
       fstr.flush();
     }
@@ -222,7 +223,7 @@ class PageContainer : ISubject1 {
       stream >> item.id >> item.name >> item.score;
 
       if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
-        throw std::runtime_error("already seen");
+        throw std::runtime_error("already seen111");
       }
 
       if (item.score > threshold) {
@@ -262,7 +263,7 @@ class PageContainer : ISubject1 {
       stream >> item.id >> item.name >> item.score;
 
       if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
-        throw std::runtime_error("already seen");
+        throw std::runtime_error("already seen111");
       }
 
       if (item.score > threshold) {
