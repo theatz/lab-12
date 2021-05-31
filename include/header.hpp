@@ -1,5 +1,5 @@
 // Copyright 2020 Your Name <your_email>
-
+#include <utility>
 #include <algorithm>
 #include <fstream>
 #include <iostream>
@@ -40,7 +40,6 @@ class Log {
   }
 
  protected:
-
   explicit Log(size_t level) : level_(level) { out_ = &std::cout; }
 
  private:
@@ -171,7 +170,7 @@ class StatSender : public IObserver2 {
 
 class Histogram : public IObserver3 {
  public:
-  Histogram(Log* log) : log_(log) {}
+  explicit Histogram(Log* log) : log_(log) {}
   void OnDataLoad(const std::vector<Item>& old_items,
                   const std::vector<Item>& new_items) override {
     for (const auto& new_item : new_items) {
@@ -305,7 +304,7 @@ class PageContainer : ISubject1 {
     list_observer3.remove(observer);
   }
 
-  PageContainer(const Log* log) : log_(log) {}
+  explicit PageContainer(const Log* log) : log_(log) {}
 
   size_t data_size()
   {
